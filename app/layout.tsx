@@ -177,9 +177,7 @@ export default async function RootLayout({
             <ThemeColorApplier />
             <LangProvider>
               {children}
-              {
-                <Footer services={services} />
-              }
+              <Footer services={services} />
               <WhatsAppButton />
             </LangProvider>
           </SettingsProvider>

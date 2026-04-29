@@ -166,6 +166,9 @@ export default function Footer( {services = []}: {services: Service[]}  ) {
             <span className="text-xs text-muted-foreground">
               &copy; {year}. {t.footer.rights}
             </span>
+            <a href="https://actmoud.com/" target="_blank" rel="noopener noreferrer" className="text-xs text-muted-foreground hover:text-primary transition-colors">
+              Develop by ACTMOUD
+            </a>
           </div>
           <div className="flex items-center gap-1">
             <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
