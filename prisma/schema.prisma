@@ -1,0 +1,274 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  password      String
+  role          String    @default("user") // "user" | "admin"
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts Account[]
+  sessions Session[]
+
+  @@map("users")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+model Service {
+  id          String    @id @default(cuid())
+  name        String
+  nameAr      String
+  slug        String    @unique
+  icon        String
+  description String
+  descriptionAr String
+  featuresEn  String[]  // JSON array
+  featuresAr  String[]  // JSON array
+  benefits    String[]  // JSON array
+  benefitsAr  String[]  // JSON array
+  image       String?
+  published   Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  products    Product[]
+
+  @@map("services")
+}
+
+model Product {
+  id            String   @id @default(cuid())
+  name          String
+  nameAr        String
+  slug          String   @unique
+  brand         String
+  category      String   // "energy" | "hvac" | "water" | "security" | "mep" | "trading"
+  shortDesc     String
+  shortDescAr   String
+  description   String
+  descriptionAr String
+  image         String
+  specificationsEn String[] // JSON array of specs
+  specificationsAr String[] // JSON array of specs
+  featuresEn    String[]
+  featuresAr    String[]
+  price         Float?
+  serviceId     String?
+  published     Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  service       Service? @relation(fields: [serviceId], references: [id], onDelete: SetNull)
+
+  @@map("products")
+}
+
+model Project {
+  id            String   @id @default(cuid())
+  title         String
+  titleAr       String
+  slug          String   @unique
+  category      String   // "energy" | "mep" | "hvac" | "water" | "security" | "contracting"
+  description   String
+  descriptionAr String
+  location      String
+  locationAr    String
+  client        String
+  clientAr      String
+  year          Int
+  duration      String
+  durationAr    String
+  image         String
+  images        String[] // Gallery images
+  challenge     String
+  challengeAr   String
+  solution      String
+  solutionAr    String
+  results       String[]
+  resultsAr     String[]
+  published     Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("projects")
+}
+
+model BlogPost {
+  id            String   @id @default(cuid())
+  title         String
+  titleAr       String
+  slug          String   @unique
+  category      String   // "Energy" | "Engineering" | "MEP" | "Sustainability" | "Projects"
+  excerpt       String
+  excerptAr     String
+  content       String   // Rich text/HTML
+  contentAr     String   // Rich text/HTML
+  image         String
+  authorName    String
+  authorRole    String
+  readingTime   Int
+  published     Boolean  @default(true)
+  publishedAt   DateTime @default(now())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("blog_posts")
+}
+
+model Contact {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  company   String?
+  service   String?
+  message   String
+  status    String   @default("new") // "new" | "read" | "replied" | "archived"
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("contacts")
+}
+
+model TeamMember {
+  id        String   @id @default(cuid())
+  name      String
+  nameAr    String
+  role      String
+  roleAr    String
+  image     String
+  bio       String?
+  bioAr     String?
+  order     Int      @default(0)
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("team_members")
+}
+
+model Client {
+  id        String   @id @default(cuid())
+  name      String
+  nameAr    String
+  logo      String?
+  order     Int      @default(0)
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("clients")
+}
+
+model Testimonial {
+  id        String   @id @default(cuid())
+  name      String
+  nameAr    String
+  role      String
+  roleAr    String
+  text      String
+  textAr    String
+  rating    Int      @default(5)
+  order     Int      @default(0)
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("testimonials")
+}
+
+model Stat {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Text
+  key       String   @unique
+  value     String
+  labelEn   String   @map("label_en")
+  labelAr   String   @map("label_ar")
+  sortOrder Int      @default(0) @map("sort_order")
+  published Boolean  @default(true)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@map("stats")
+}
+
+model SiteSettings {
+  id               String   @id @default("main")
+  companyName      String   @default("ENVIRON") @map("company_name")
+  companyNameAr    String   @default("إنفايرون") @map("company_name_ar")
+  tagline          String?  @default("Integrated Engineering Solutions")
+  taglineAr        String?  @map("tagline_ar")
+  email            String?  @default("info@environ-sd.com")
+  phone            String?  @default("+249912340960")
+  phoneAlt         String?  @map("phone_alt")
+  whatsapp         String?  @default("+249912340960")
+  address          String?  @default("Khartoum, Sudan")
+  addressAr        String?  @map("address_ar")
+  workingHours     String?  @default("Sun - Thu: 8AM - 5PM") @map("working_hours")
+  workingHoursAr   String?  @map("working_hours_ar")
+  facebook         String?
+  twitter          String?
+  linkedin         String?
+  instagram        String?
+  youtube          String?
+  metaTitle        String?  @map("meta_title")
+  metaTitleAr      String?  @map("meta_title_ar")
+  metaDescription  String?  @map("meta_description")
+  metaDescriptionAr String? @map("meta_description_ar")
+  ogImage          String?  @map("og_image")
+  logo             String?  @default("/logo.svg")
+  favicon          String?  @default("/favicon.ico")
+  primaryColor     String?  @default("#009d8e") @map("primary_color")
+  createdAt        DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt        DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@map("site_settings")
+}

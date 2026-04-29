@@ -1,0 +1,91 @@
+{
+  "settings": {
+    "id": "main",
+    "company_name": "ENVIRON",
+    "company_name_ar": "إنفايرون",
+    "tagline": "Integrated Engineering Solutions",
+    "tagline_ar": "حلول هندسية متكاملة",
+    "email": "info@environ-sd.com",
+    "phone": "+249912340960",
+    "whatsapp": "+249912340960",
+    "address": "Khartoum, Sudan",
+    "address_ar": "الخرطوم، السودان",
+    "working_hours": "Sun - Thu: 8AM - 5PM",
+    "meta_description": "Comprehensive MEP, energy solutions, and contracting services for industries across Sudan and beyond.",
+    "primary_color": "#009d8e"
+  },
+  "stats": [
+    { "value": "250+", "label": "Projects Delivered" },
+    { "value": "130+", "label": "Clients Served" },
+    { "value": "15+", "label": "Years Experience" },
+    { "value": "5+", "label": "Countries Reached" }
+  ],
+  "services": [
+    {
+      "name": "MEP Engineering",
+      "description": "Complete mechanical, electrical, and plumbing design and installation for commercial and industrial facilities"
+    },
+    {
+      "name": "Generator Solutions",
+      "description": "Diesel and gas generator supply, installation, and maintenance for backup and primary power"
+    },
+    {
+      "name": "HVAC Systems",
+      "description": "Central and VRF air conditioning design, installation, and maintenance for optimal indoor comfort"
+    },
+    {
+      "name": "Water Pump Systems",
+      "description": "Submersible and surface pump supply and installation for residential, commercial, and agricultural applications"
+    },
+    {
+      "name": "Solar Energy Systems",
+      "description": "Grid-tied and off-grid solar photovoltaic systems from residential to utility-scale"
+    },
+    {
+      "name": "General Contracting",
+      "description": "End-to-end project delivery from design through commissioning for industrial and commercial projects"
+    }
+  ],
+  "projects": [
+    {
+      "title": "Khartoum North Solar Farm",
+      "description": "5MW solar installation delivering clean energy to 3,000+ homes.",
+      "client": "Ministry of Energy",
+      "location": "Khartoum North, Sudan",
+      "year": 2024,
+      "category": "Energy"
+    },
+    {
+      "title": "Central Business Tower MEP",
+      "description": "Full MEP design and installation for a 22-storey commercial tower.",
+      "client": "Private Developer",
+      "location": "Khartoum, Sudan",
+      "year": 2023,
+      "category": "MEP"
+    },
+    {
+      "title": "Al-Nour Hospital HVAC",
+      "description": "Precision HVAC design and commissioning for a 400-bed hospital.",
+      "client": "Al-Nour Medical Group",
+      "location": "Omdurman, Sudan",
+      "year": 2023,
+      "category": "Engineering"
+    }
+  ],
+  "team": [
+    { "name": "Ahmed Hassan", "role": "CEO & Founder" },
+    { "name": "Sara Mohamed", "role": "Head of Engineering" },
+    { "name": "Khalid Ibrahim", "role": "Energy Director" },
+    { "name": "Fatima Ali", "role": "Project Manager" }
+  ],
+  "clients": [
+    "Ministry of Energy",
+    "Khartoum State",
+    "UN Agencies",
+    "DAL Group",
+    "Kenana Sugar",
+    "Sudanese National Bank",
+    "Al-Salam Hospital",
+    "IOM Sudan"
+  ]
+}

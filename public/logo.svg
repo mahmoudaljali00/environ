@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 66">
+  <defs>
+    <style>
+      .cls-1 {
+        font-family: NotoSansHK-Medium, 'Noto Sans HK';
+        font-size: 8.55px;
+        font-variation-settings: 'wght' 500;
+        font-weight: 500;
+      }
+      .cls-1, .cls-2 {
+        fill: #009d8e;
+      }
+      .cls-3 {
+        fill: #ebb720;
+      }
+    </style>
+  </defs>
+  <rect class="cls-2" x="20.77" y="19.27" width="15.21" height="6.99"/>
+  <polygon class="cls-2" points="61.94 24.04 61.94 45.17 55.4 45.17 46.19 29.23 46.19 40.4 39.65 40.4 39.65 19.27 46.19 19.27 55.4 35.23 55.4 24.04 61.94 24.04"/>
+  <polygon class="cls-2" points="171.17 24.04 171.17 45.17 164.63 45.17 156.16 29.29 156.16 40.4 149.62 40.4 149.62 19.27 156.16 19.27 156.16 19.33 164.63 34.6 164.63 24.04 171.17 24.04"/>
+  <rect class="cls-2" x="92.7" y="19.27" width="6.54" height="25.9"/>
+  <rect class="cls-2" x="20.77" y="28.47" width="13.73" height="6.83"/>
+  <rect class="cls-2" x="20.77" y="38.34" width="15.21" height="6.83"/>
+  <path class="cls-2" d="M133.9,19.27c-7.16,0-12.95,5.8-12.95,12.95s5.79,12.95,12.95,12.95,12.95-5.8,12.95-12.95-5.8-12.95-12.95-12.95ZM133.9,38.17c-3.25,0-5.89-2.64-5.89-5.89s2.64-5.89,5.89-5.89,5.88,2.64,5.88,5.89-2.63,5.89-5.88,5.89Z"/>
+  <path class="cls-2" d="M104.18,19.27h6.64s7.4,1.71,7.34,8.41c-.05,5.84-4.23,7.93-4.23,7.93l4.5,9.56h-7.61l-4.29-8.92h-2.36v-7.07h6.43s.7-.29.7-1.39c0-1.03-.91-1.39-.91-1.39h-6.21v-7.13Z"/>
+  <polygon class="cls-2" points="88.27 19.27 79.43 45.17 72.36 45.17 65.39 31.64 72.25 31.64 74.93 36.54 80.82 19.27 88.27 19.27"/>
+  <rect class="cls-3" x="92.84" y="8.6" width="6.32" height="6.32" transform="translate(36.43 -64.44) rotate(45)"/>
+  <polygon class="cls-2" points="35.34 10.43 80.02 11.76 35.34 13 35.34 10.43"/>
+  <polygon class="cls-2" points="157.09 10.43 112.41 11.76 157.09 13 157.09 10.43"/>
+  <text class="cls-1" transform="translate(45.05 54.88)"><tspan x="0" y="0">INTEGRATED SOLUTIONS</tspan></text>
+</svg>
