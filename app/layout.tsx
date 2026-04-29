@@ -140,7 +140,7 @@ export default async function RootLayout({
   const settingsResult = await getSettings()
   const settings = settingsResult.success ? settingsResult.data ?? null : null
   const servicesResult = await getAllServices()
-  const services = servicesResult.success ? servicesResult.data ?? [] : []
+  const services = servicesResult.success && servicesResult.data ? servicesResult.data : []
 
   // Pre-hydration script — runs before React, prevents flash of wrong theme
   const themeScript = `
@@ -177,7 +177,9 @@ export default async function RootLayout({
             <ThemeColorApplier />
             <LangProvider>
               {children}
-              <Footer services={services} />
+              {
+                services.length > 0 && <Footer services={services} />
+              }
               <WhatsAppButton />
             </LangProvider>
           </SettingsProvider>

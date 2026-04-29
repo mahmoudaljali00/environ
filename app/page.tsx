@@ -11,10 +11,6 @@ import { getTestimonials } from './actions/testimonials'
 import { getHeroStats } from './actions'
 import { getAllServices } from './actions/services'
 import { getFeaturedProjects } from './actions/projects-preview'
-// import { getClients } from './actions/clients'
-// import ClientsSection from '@/components/home/clients-section'
-// import ServicesPageClient from './services/services-client'
-// import BlogPreview from '@/components/home/blog-preview'
 
 export const revalidate = 60
 
@@ -28,26 +24,22 @@ export default async function HomePage() {
     getFeaturedProjects()
   ])
 
-  const products = productsResult.success ? productsResult.data : []
-  const team = teamResult.success ? teamResult.data : []
-  // const clients = clientsResult.success ? clientsResult.data : []
-  const testimonials = testimonialsResult.success ? testimonialsResult.data : []
+  const products = (productsResult.success && productsResult.data) ? productsResult.data : []
+  const team = (teamResult.success && teamResult.data) ? teamResult.data : []
+  const testimonials = (testimonialsResult.success && testimonialsResult.data) ? testimonialsResult.data : []
   const stats = Array.isArray(statsResult) ? statsResult : []
-  const services = servicesResult.success ? servicesResult.data : []
-  const projects = projectsResult.success ? projectsResult.data : []
+  const services = (servicesResult.success && servicesResult.data) ? servicesResult.data : []
+  const projects = (projectsResult.success && projectsResult.data) ? projectsResult.data : []
 
   return (
     <main className="min-h-screen bg-background">
       <Navbar />
       <Hero stats={stats} />
-      <ServicesPreview services={services} />
-      <ProductsPreview products={products} />
-      <ProjectsCarousel projects={projects} />
-      <TeamSection team={team} />
-      <TestimonialsSection testimonials={testimonials} />
-      {/* <ServicesPageClient services={services} /> */}
-      {/* <ClientsSection clients={clients} /> */}
-      {/* <BlogPreview /> */}
+      {services.length > 0 && <ServicesPreview services={services} />}
+      {products.length > 0 && <ProductsPreview products={products} />}
+      {projects.length > 0 && <ProjectsCarousel projects={projects} />}
+      {team.length > 0 && <TeamSection team={team} />}
+      {testimonials.length > 0 && <TestimonialsSection testimonials={testimonials} />}
     </main>
   )
 }

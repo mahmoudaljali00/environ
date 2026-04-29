@@ -118,35 +118,28 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden glass border-t border-border/60 overflow-hidden"
+            className="md:hidden glass border-t border-border/60 overflow-auto"
           >
-            <ul className={cn('flex flex-col px-6 py-4 gap-4', isRTL && 'items-end text-right')}>
+            <ul className={cn('flex flex-col px-6 py-4 gap-4')}>
               {navLinks.map(({ key, href }) => (
                 <li key={key}>
                   <Link
                     href={href}
-                    className="block text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+                    className="block z-50 text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
                     onClick={() => setOpen(false)}
                   >
                     {t.nav[key]}
                   </Link>
                 </li>
               ))}
-              <li className="flex items-center gap-3 pt-2 border-t border-border/60 flex-wrap">
-                <ThemeToggle />
+              <li className="flex flex-row items-center justify-between gap-3 pt-2 border-t border-border/60  ">
                 <button
                   onClick={() => { setLang(lang === 'en' ? 'ar' : 'en'); setOpen(false) }}
-                  className="text-xs font-medium px-3 py-1.5 rounded-full border border-primary/40 text-primary hover:bg-primary/10 transition-colors"
+                  className="text-xs font-semibold px-3 py-1.5 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
                 >
                   {lang === 'en' ? 'عربي' : 'EN'}
                 </button>
-                <Link
-                  href="/admin"
-                  className="text-xs font-semibold px-3 py-1.5 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
-                  onClick={() => setOpen(false)}
-                >
-                  {t.nav.admin}
-                </Link>
+                <ThemeToggle />
               </li>
             </ul>
           </motion.div>
