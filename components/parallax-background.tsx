@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
@@ -50,30 +50,55 @@ export default function ParallaxBackground({
   )
 }
 
+// Deterministic pseudo-random from seed (avoids hydration mismatch)
+function seededRandom(seed: number) {
+  const x = Math.sin(seed * 9301 + 49297) * 49297
+  return x - Math.floor(x)
+}
+
 // Floating particles effect
 export function FloatingParticles({ count = 15 }: { count?: number }) {
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // Generate deterministic particles based on index
+  const particles = Array.from({ length: count }).map((_, i) => ({
+    x: `${seededRandom(i * 3) * 100}%`,
+    y: `${seededRandom(i * 3 + 1) * 100}%`,
+    scale: seededRandom(i * 3 + 2) * 0.5 + 0.5,
+    animateY: `${seededRandom(i * 7) * 20 - 10}%`,
+    animateX: `${seededRandom(i * 7 + 1) * 10 - 5}%`,
+    duration: seededRandom(i * 7 + 2) * 10 + 10,
+    delay: seededRandom(i * 7 + 3) * 5,
+  }))
+
+  if (!mounted) return null
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {Array.from({ length: count }).map((_, i) => (
+      {particles.map((p, i) => (
         <motion.div
           key={i}
           className="absolute w-1 h-1 rounded-full bg-primary/30"
           initial={{
-            x: `${Math.random() * 100}%`,
-            y: `${Math.random() * 100}%`,
-            scale: Math.random() * 0.5 + 0.5,
+            x: p.x,
+            y: p.y,
+            scale: p.scale,
           }}
           animate={{
-            y: [null, `${Math.random() * 20 - 10}%`],
-            x: [null, `${Math.random() * 10 - 5}%`],
+            y: [null, p.animateY],
+            x: [null, p.animateX],
             opacity: [0.2, 0.6, 0.2],
           }}
           transition={{
-            duration: Math.random() * 10 + 10,
+            duration: p.duration,
             repeat: Infinity,
             repeatType: 'reverse',
             ease: 'easeInOut',
-            delay: Math.random() * 5,
+            delay: p.delay,
           }}
         />
       ))}

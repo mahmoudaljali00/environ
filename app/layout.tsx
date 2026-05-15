@@ -9,6 +9,7 @@ import { ThemeColorApplier } from '@/components/theme-color-applier'
 import WhatsAppButton from '@/components/whatsapp-button'
 import { getSettings } from '@/app/admin/settings/actions'
 import Footer from '@/components/footer'
+import Script from 'next/script'
 
 
 const inter = Inter({
@@ -152,7 +153,11 @@ export default async function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <Script
+          id="theme-script"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: themeScript }}
+        />
       </head>
       <body className="relative font-sans antialiased bg-background text-foreground">
         <ThemeProvider>

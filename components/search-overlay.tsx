@@ -272,6 +272,7 @@ export default function SearchOverlay() {
                                   src={result.image}
                                   alt={result.title}
                                   fill
+                                  sizes="36px"
                                   className="object-cover"
                                 />
                               </div>

@@ -78,6 +78,7 @@ export default function ProductsPreview({ products }: { products: Product[] }) {
                         src={product?.image || ''}
                         alt={name}
                         fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         onError={(e) => {
                           e.currentTarget.style.display = 'none'
                         }}

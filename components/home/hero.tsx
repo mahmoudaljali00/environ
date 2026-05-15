@@ -8,7 +8,7 @@ import { ArrowRight, ChevronDown } from 'lucide-react'
 import { useLang } from '@/components/lang-provider'
 import { FloatingParticles } from '@/components/parallax-background'
 
-interface StatItem {
+type StatItem = {
   id: string
   key: string
   value: string
@@ -18,11 +18,7 @@ interface StatItem {
   published: boolean
 }
 
-interface HeroProps {
-  stats: StatItem[]
-}
-
-export default function Hero({ stats }: HeroProps) {
+export default function Hero({ stats }: { stats: StatItem[] }) {
   const { lang, t } = useLang()
   const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
@@ -52,13 +48,9 @@ export default function Hero({ stats }: HeroProps) {
 
   return (
     <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Dark bg */}
-      {/* <div className="absolute inset-0 bg-background" /> */}
-
-      {/* Hero image with parallax */}
-      <motion.div
+       {/* Hero image with parallax */}
+      <div
         className="absolute inset-0"
-        style={{ y: bgY }}
       >
         <Image
           src="/hero-bg.jpg"
@@ -68,13 +60,16 @@ export default function Hero({ stats }: HeroProps) {
           priority
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-background/70" />
-      </motion.div>
+      </div>
+
+      {/* Dark bg */}
+      <div className="absolute inset-0 bg-background/70" />
+
+
 
       {/* Animated pattern parallax overlay */}
-      {/* <motion.div
+      {/* <div
         className="absolute inset-0 pattern-bg opacity-[0.06]"
-        style={{ y: patternY }}
       /> */}
 
       {/* Floating particles */}
@@ -139,6 +134,7 @@ export default function Hero({ stats }: HeroProps) {
             <Image
               src="/logo.svg"
               alt="ENVIRON"
+              priority
               width={400}
               height={120}
               className="h-18 sm:h-20 lg:h-24 xl:h-30 w-auto dark:brightness-[2] dark:saturate-150"
@@ -146,7 +142,6 @@ export default function Hero({ stats }: HeroProps) {
                 filter: 'drop-shadow(0 0 40px rgba(0, 157, 142, 0.5)) drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3))',
                 transform: 'translateZ(50px)',
               }}
-              priority
             />
             {/* Reflection effect */}
             <motion.div
