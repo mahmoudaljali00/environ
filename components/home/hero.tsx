@@ -6,7 +6,12 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight, ChevronDown } from 'lucide-react'
 import { useLang } from '@/components/lang-provider'
-import { FloatingParticles } from '@/components/parallax-background'
+import dynamic from "next/dynamic";
+
+const FloatingParticles = dynamic(
+  () => import("@/components/parallax-background").then(mod => ({ default: mod.FloatingParticles })),
+  { ssr: false }
+);
 
 type StatItem = {
   id: string
@@ -21,9 +26,7 @@ type StatItem = {
 export default function Hero({ stats }: { stats: StatItem[] }) {
   const { lang, t } = useLang()
   const ref = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
-  const patternY = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
-  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '20%'])
+  const { scrollYProgress } = useScroll({ container: ref, target: ref, offset: ['start start', 'end start'] })
   const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0])
 
   // 3D logo mouse tracking
@@ -134,7 +137,7 @@ export default function Hero({ stats }: { stats: StatItem[] }) {
             <Image
               src="/logo.svg"
               alt="ENVIRON"
-              priority
+              loading="eager"
               width={400}
               height={120}
               className="h-18 sm:h-20 lg:h-24 xl:h-30 w-auto dark:brightness-[2] dark:saturate-150"

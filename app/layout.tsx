@@ -159,7 +159,7 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{ __html: themeScript }}
         />
       </head>
-      <body className="relative font-sans antialiased bg-background text-foreground">
+      <body className="relative font-sans antialiased bg-background text-foreground" suppressHydrationWarning>
         <ThemeProvider>
           <SettingsProvider settings={settings}>
             <ThemeColorApplier />
