@@ -9,7 +9,7 @@ import { getFeaturedProducts } from './actions/products-preview'
 import { getTeamMembers } from './actions/team'
 import { getTestimonials } from './actions/testimonials'
 import { getHeroStats } from './actions'
-import { getAllServices } from './actions/services'
+import { getAllServices } from './actions/services-preview'
 import { getFeaturedProjects } from './actions/projects-preview'
 
 export const revalidate = 60

@@ -51,7 +51,7 @@ export default function ParallaxBackground({
 }
 
 // Floating particles effect
-export function FloatingParticles({ count = 20 }: { count?: number }) {
+export function FloatingParticles({ count = 15 }: { count?: number }) {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {Array.from({ length: count }).map((_, i) => (

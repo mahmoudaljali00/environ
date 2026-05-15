@@ -75,9 +75,12 @@ export default function ProductsPreview({ products }: { products: Product[] }) {
                     {/* Product image */}
                     <div className="relative aspect-[4/3] overflow-hidden bg-card/50">
                       <Image
-                        src={product.image}
+                        src={product?.image || ''}
                         alt={name}
                         fill
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none'
+                        }}
                         className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                       />
                       {/* Gradient overlay */}

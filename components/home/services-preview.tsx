@@ -18,11 +18,10 @@ type Service = {
   description: string
   descriptionAr: string
   icon: string
-  image?: string | null
 }
 
 export default function ServicesPreview({ services }: { services: Service[] }) {
-  const { t } = useLang()
+  const { t, isRTL } = useLang()
 
   return (
     <section className="relative py-24 overflow-hidden">
@@ -67,10 +66,10 @@ export default function ServicesPreview({ services }: { services: Service[] }) {
                     </div>
 
                     <h3 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors leading-snug">
-                      {service.name}
+                      {isRTL ? service.nameAr : service.name}
                     </h3>
                     <p className="text-sm text-muted-foreground leading-relaxed flex-1">
-                      {service.description}
+                      {isRTL ? service.descriptionAr.slice(0, 100) : service.description.slice(0, 100)}
                     </p>
 
                     <span className="text-xs text-primary font-medium group-hover:underline mt-auto">

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Noto_Sans_Arabic, Cairo, Tajawal } from 'next/font/google'
+import { Inter, Cairo } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import '@/app/globals.css'
 import { LangProvider } from '@/components/lang-provider'
@@ -9,7 +9,6 @@ import { ThemeColorApplier } from '@/components/theme-color-applier'
 import WhatsAppButton from '@/components/whatsapp-button'
 import { getSettings } from '@/app/admin/settings/actions'
 import Footer from '@/components/footer'
-import { getAllServices } from '@/app/actions/services'
 
 
 const inter = Inter({
@@ -18,21 +17,7 @@ const inter = Inter({
   display: 'swap',
 })
 
-const notoArabic = Noto_Sans_Arabic({
-  subsets: ['arabic'],
-  variable: '--font-arabic',
-  display: 'swap',
-  weight: ['400', '500', '600', '700', '800'],
-})
-
 const cairo = Cairo({
-  subsets: ['arabic'],
-  variable: '--font-arabic',
-  display: 'swap',
-  weight: ['200', '300', '400', '500', '700', '800', '900'],
-})
-
-const tajawal = Tajawal({
   subsets: ['arabic'],
   variable: '--font-arabic',
   display: 'swap',
@@ -139,8 +124,6 @@ export default async function RootLayout({
 }>) {
   const settingsResult = await getSettings()
   const settings = settingsResult.success ? settingsResult.data ?? null : null
-  const servicesResult = await getAllServices()
-  const services = servicesResult.success && servicesResult.data ? servicesResult.data : []
 
   // Pre-hydration script — runs before React, prevents flash of wrong theme
   const themeScript = `
@@ -177,9 +160,7 @@ export default async function RootLayout({
             <ThemeColorApplier />
             <LangProvider>
               {children}
-              {
-                services.length > 0 && <Footer services={services} />
-              }
+              <Footer />
               <WhatsAppButton />
             </LangProvider>
           </SettingsProvider>

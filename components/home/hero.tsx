@@ -60,9 +60,13 @@ export default function Hero({ stats }: HeroProps) {
         className="absolute inset-0"
         style={{ y: bgY }}
       >
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: 'url(/hero-bg.jpg)' }}
+        <Image
+          src="/hero-bg.jpg"
+          alt="Hero Background"
+          fill
+          className="object-cover"
+          priority
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-background/70" />
       </motion.div>
