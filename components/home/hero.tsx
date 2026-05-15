@@ -53,7 +53,7 @@ export default function Hero({ stats }: HeroProps) {
   return (
     <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden">
       {/* Dark bg */}
-      <div className="absolute inset-0 bg-background" />
+      {/* <div className="absolute inset-0 bg-background" /> */}
 
       {/* Hero image with parallax */}
       <motion.div
@@ -72,10 +72,10 @@ export default function Hero({ stats }: HeroProps) {
       </motion.div>
 
       {/* Animated pattern parallax overlay */}
-      <motion.div
+      {/* <motion.div
         className="absolute inset-0 pattern-bg opacity-[0.06]"
         style={{ y: patternY }}
-      />
+      /> */}
 
       {/* Floating particles */}
       <FloatingParticles count={30} />
